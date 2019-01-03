@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ytrubach <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/22 14:31:30 by ytrubach          #+#    #+#             */
-/*   Updated: 2018/12/22 14:31:40 by ytrubach         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-    
-#include <stdio.h>
-#include <stdlib.h>
+#include "h.h"
 
 //xxx {second(s)|minute(s)|hour(s)|day(s)|month(s)} ago.
+
 char *itoai(unsigned int n)
 {
   char *s;
@@ -49,11 +37,10 @@ int len(char *s)
 }
 
 
-void copy(char *dest, int *i, char *s, int start, int len)
+void copy(char *dest, int *i, const char *s, int start, int len)
 {
   int j = 0;
 
-//printf("d -%s, s-%s, %d, %d, %d\n", dest, s, (*i), start, len);
    while (j <  len )
    {
      //printf("s[start++] %c\n",  s[start]); 
@@ -61,7 +48,7 @@ void copy(char *dest, int *i, char *s, int start, int len)
      //printf("*dest[(*i)] %c\n",  dest[(*i) - 1]);
      j++;
    }
-  //*dest[ii] = '\0';
+  dest[(*i)] = '\0';
   //printf("*dest %s\n", dest);
 
 }
@@ -99,9 +86,7 @@ char *create(char *num, char t, int f)
          copy(s, &i, text, 23, 5);
     copy(s, &i, text, 34, 5);
 	s[17] = '\0';
-  //printf("s -------- %s\n", s);
-return s;
- // (state == 1) ? (s = "second ago\0") : 0;
+    return s;
  }
 
 
@@ -129,25 +114,4 @@ char    *moment(unsigned int duration)
   snum = itoai(n);
   kk = create(snum, t, f);
    return kk; 
-}
-
-int		main(void)//
-{
-printf("%s\n", moment(0));
-printf("%s\n", moment(1));
-printf("%s\n", moment(31));
-printf("%s\n", moment(65));
-printf("%s\n", moment(120));
- printf("%s\n", moment(2400));
- printf("%s\n", moment(3735));
- printf("%s\n", moment(52400));
-  printf("%s\n", moment(90000));
-// moment(0);   //  => 0 seconds ago.
-// moment(1);  // => 1 second ago.
-//  moment(30);  //  => 30 seconds ago.
-//  moment(65);  //  => 1 minute ago.
-//  moment(120); //   => 2 minutes ago.
-//  moment(2400); //   => 40 minutes ago.
-//  moment(3735); //   => 1 hour ago.
-	return (0);
 }
